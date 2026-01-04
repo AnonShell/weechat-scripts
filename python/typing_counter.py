@@ -46,6 +46,8 @@
 # 1.0 <nils_2@freenode>:
 #       make script python3 compatible
 #       add regular expression for format option
+# 1.0.1:
+#       fix warning messages when loading script
 #
 # usage:
 # add [tc] to your weechat.bar.status.items
@@ -77,7 +79,7 @@ from __future__ import print_function
 
 SCRIPT_NAME    = "typing_counter"
 SCRIPT_AUTHOR  = "fauno <fauno@kiwwwi.com.ar>"
-SCRIPT_VERSION = "1.0"
+SCRIPT_VERSION = "1.0.1"
 SCRIPT_LICENSE = "GPL3"
 SCRIPT_DESC    = "Bar item showing typing count and cursor position. Add 'tc' to a bar."
 
@@ -115,10 +117,10 @@ tc_default_options = {
 tc_options = {}
 
 # regexp to match ${color} tags
-regex_color=re.compile('\$\{([^\{\}]+)\}')
+regex_color=re.compile(r'\$\{([^\{\}]+)\}')
 
 # regexp to match ${optional string} tags
-regex_optional_tags=re.compile('%\{[^\{\}]+\}')
+regex_optional_tags=re.compile(r'%\{[^\{\}]+\}')
 
 def command_run_cb (data, signal, signal_data):
     if tc_options['warn_command'] == '':
